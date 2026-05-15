@@ -1,0 +1,26 @@
+package org.cloudbus.cloudsim.web.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Configuration
+public class ExecutorConfig {
+
+    /**
+     * Single-threaded executor for CloudSim runs.
+     * CloudSim uses static global state (CloudSim.init), so only one simulation
+     * may run at a time in this JVM. All submitted jobs are serialized through
+     * this executor.
+     */
+    @Bean(destroyMethod = "shutdown")
+    public ExecutorService simulationExecutor() {
+        return Executors.newSingleThreadExecutor(r -> {
+            Thread t = new Thread(r, "cloudsim-runner");
+            t.setDaemon(true);
+            return t;
+        });
+    }
+}

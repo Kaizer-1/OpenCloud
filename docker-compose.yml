@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - cloudsim-data:/data
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/cloudsim.db
+    restart: unless-stopped
+
+volumes:
+  cloudsim-data:
