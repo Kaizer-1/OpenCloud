@@ -1,5 +1,5 @@
 -------------------------------------------
-Changes from CloudSim 3.0.3 to CloudSim 4.0
+Changes from OpenCloud 3.0.3 to OpenCloud 4.0
 -------------------------------------------
 
 WHAT'S NEW
@@ -10,7 +10,7 @@ WHAT'S NEW
 
 
 -------------------------------------------
-Changes from CloudSim 3.0.2 to CloudSim 3.0.3
+Changes from OpenCloud 3.0.2 to OpenCloud 3.0.3
 -------------------------------------------
 
 WHAT'S NEW
@@ -25,7 +25,7 @@ This is a bug fix and refactoring release. The following updates have been made:
 
 
 -------------------------------------------
-Changes from CloudSim 3.0.1 to CloudSim 3.0.2
+Changes from OpenCloud 3.0.1 to OpenCloud 3.0.2
 -------------------------------------------
 
 WHAT'S NEW
@@ -39,7 +39,7 @@ This is a bug fix release. The following updates have been made:
 
 
 -------------------------------------------
-Changes from CloudSim 3.0 to CloudSim 3.0.1
+Changes from OpenCloud 3.0 to OpenCloud 3.0.1
 -------------------------------------------
 
 WHAT'S NEW
@@ -59,7 +59,7 @@ This is mainly a bug fix release. The following updates have been made:
 
 
 -----------------------------------------
-Changes from CloudSim 2.1 to CloudSim 3.0
+Changes from OpenCloud 2.1 to OpenCloud 3.0
 -----------------------------------------
 
 WHAT'S NEW
@@ -67,10 +67,10 @@ WHAT'S NEW
 
 - NEW VM SCHEDULER. VmSchedulerTimeSharedOverSubscription models a scheduler that allows unbounded number of
 VMS to be deployed in a single Host, regardless its requirements in terms of number of MIPS. Notice that this
-was the behaviour of VmSchedulerTimeShared in CloudSim 1.0 Beta, but this behaviour had changed in
-CloudSim 2.0 to accommodate requests with specific amount of MIPS.
+was the behaviour of VmSchedulerTimeShared in OpenCloud 1.0 Beta, but this behaviour had changed in
+OpenCloud 2.0 to accommodate requests with specific amount of MIPS.
 
-- NEW DATACENTER NETWORK MODEL. A internal network model has been added to CloudSim 3.0. It supports definition
+- NEW DATACENTER NETWORK MODEL. A internal network model has been added to OpenCloud 3.0. It supports definition
 of switches connecting hosts in arbitrary network topologies. New Vm classes and Cloudlet classes were added to
 take advantage of this feature without breaking compatibility of older code. This new feature also enables
 modelling of message-passing applications. They are included in the package 'network.datacenter'.
@@ -92,7 +92,7 @@ power package. The data have originally been provided as a part of the CoMon pro
 for PlanetLab (http://comon.cs.princeton.edu/).
 
 - SUPPORT FOR EXTERNAL WORKLOADS. External workloads written in the Standard Workload Format (SWF, from the
-Parallel Workload Archive) can be loaded and read by CloudSim. Relevant classes are WorkloadModel and
+Parallel Workload Archive) can be loaded and read by OpenCloud. Relevant classes are WorkloadModel and
 WorkloadFileReader ('util' package).
 
 - SUPPORT FOR USER-DEFINED END OF SIMULATION. Users are now able to specify a given event that causes the simulation
@@ -112,8 +112,8 @@ REMOVED CLASSES
 API CHANGES
 -----------
 
-- CloudSim.terminateSimulation(long time) was changed to CloudSim.terminateSimulation(double time), to comply
-with clock field of CloudSim class.
+- OpenCloud.terminateSimulation(long time) was changed to OpenCloud.terminateSimulation(double time), to comply
+with clock field of OpenCloud class.
 - PowerModel was moved from PowerPe to PowerHost
 - VM allocation policies in the power package were replaced by a completely new implementation.
 
@@ -122,7 +122,7 @@ BUGFIXES AND IMPROVEMENTS
 -------------------------
 
 - Fixed issue 20: HostDynamicWorkload.updateVmsProcessing() throws NullPointerException.
-- Fixed issue 19: CloudSimTags class should be abstract, not final.
+- Fixed issue 19: opencloudTags class should be abstract, not final.
 - Fixed issue 17: "Something is wrong, the VM can's be restored" should be an Exception.
 - Fixed issue 16: cloudletsSubmitted in DatacenterBroker should be protected, not private.
 - Fixed issue 15: Simulation failed by the RAM where it should not fail.
@@ -135,7 +135,7 @@ BUGFIXES AND IMPROVEMENTS
 - Fixed issue 7:  Problem in manifests of Maven-generated jar files.
 - Fixed issue 5:  Abrupt termination of the simulation caused by VmAllocationPolicySimple.
 - Fixed issue 4:  Network examples do not load topology file.
-- Fixed issue 2:  Turn the 'future' queue of CloudSim class protected.
+- Fixed issue 2:  Turn the 'future' queue of OpenCloud class protected.
 - Fixed issue 1:  VM is created without check on host's storage capacity.
 - The power package and corresponding examples were heavily updated, as well as new PlanetLab workload data were added.
 - Fix in Datacenter: one initial update step was been skipped, what caused malfunctions in the schedulers.
@@ -145,7 +145,7 @@ BUGFIXES AND IMPROVEMENTS
 
 
 -----------------------------------------
-Changes from CloudSim 2.0 to CloudSim 2.1
+Changes from OpenCloud 2.0 to OpenCloud 2.1
 -----------------------------------------
 
 - The project has been migrated to using Apache Maven (http://maven.apache.org/). Maven simplifies
@@ -159,14 +159,14 @@ Changes from CloudSim 2.0 to CloudSim 2.1
 
 
 ----------------------------------------------
-Changes from CloudSim 1.0 beta to CloudSim 2.0
+Changes from OpenCloud 1.0 beta to OpenCloud 2.0
 ----------------------------------------------
 
 WHAT'S NEW
 ----------
 
-- NEW SIMULATION CORE. CloudSim 2.0 does not rely on SimJava to process simulation. Therefore, creation of threads was
-controlled, race conditions found in CloudSim beta were removed, scalability and performance of CloudSim improved.
+- NEW SIMULATION CORE. OpenCloud 2.0 does not rely on SimJava to process simulation. Therefore, creation of threads was
+controlled, race conditions found in OpenCloud beta were removed, scalability and performance of OpenCloud improved.
 Moreover, support for dynamic creation and destruction of simulation entities was added.
 
 - IMPROVEMENT IN SCHEDULERS, which enhances accuracy of simulation results.
@@ -174,7 +174,7 @@ Moreover, support for dynamic creation and destruction of simulation entities wa
 - NEW FEATURES, including power-aware simulation, federation simulation, and network simulation.
 
 - PACKAGE ORGANIZATION CHANGES, including changes in class names, removal of classes, and changes in interfaces. Next, the
-main changes that affect CloudSim beta users are summarized.
+main changes that affect OpenCloud beta users are summarized.
 
 
 CHANGES IN CLASS NAMES
@@ -205,7 +205,7 @@ The following classes had their names changed to better reflect its functionalit
 (previous name) BWProvisioner -> (current name) provisioners.BwProvisioner
 (previous name) SimpleBWProvisioner -> (current name) provisioners.BwProvisionerSimple
 
-(previous name) DataCenterTags -> (current name) core.CloudSimTags
+(previous name) DataCenterTags -> (current name) core.opencloudTags
 
 (previous name) SANStorage -> (current name) HardDriveStorage
 
@@ -213,7 +213,7 @@ The following classes had their names changed to better reflect its functionalit
 REMOVED CLASSES
 ---------------
 
-Previous classes that implemented list operations were removed from CloudSim. Instead of this classes, users should use standard lists from java.utils
+Previous classes that implemented list operations were removed from OpenCloud. Instead of this classes, users should use standard lists from java.utils
 
 * CloudletList
 * VirtualMachineList
@@ -236,7 +236,7 @@ Because dependencies from SimJava were removed, and due to other code optimizati
 NEW FEATURES
 ------------
 
-Below there is a list of CloudSim's new features. Please, refer to Javadoc and examples for instructions on how to use this new features.
+Below there is a list of OpenCloud's new features. Please, refer to Javadoc and examples for instructions on how to use this new features.
 
 * Network effects added through determination of network link latency and bandwidth;
 

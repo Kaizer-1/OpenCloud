@@ -1,37 +1,37 @@
-# CloudSim Web UI — Design Document
+# OpenCloud Web UI — Design Document
 
 ## 1. Overview
 
-This document describes the architecture, API contract, parameter set, auth model, and storage design for the CloudSim Web UI — a browser-based interface around CloudSim 7.0.1 that lets users configure and run cloud computing simulations without editing Java source files.
+This document describes the architecture, API contract, parameter set, auth model, and storage design for the OpenCloud Web UI — a browser-based interface around OpenCloud 7.0.1 that lets users configure and run cloud computing simulations without editing Java source files.
 
-**Hard constraint**: `modules/cloudsim/` and `modules/cloudsim-examples/` are treated as read-only libraries. All new code lives in two new top-level additions:
-- `modules/cloudsim-web/` — Spring Boot REST API that wraps CloudSim
+**Hard constraint**: `modules/opencloud/` and `modules/opencloud-examples/` are treated as read-only libraries. All new code lives in two new top-level additions:
+- `modules/opencloud-web/` — Spring Boot REST API that wraps OpenCloud
 - `web/` — React + TypeScript frontend
 
 ---
 
-## 2. CloudSim Version & Runtime Facts
+## 2. OpenCloud Version & Runtime Facts
 
 | Property | Value |
 |---|---|
-| CloudSim version | 7.0.1 |
+| OpenCloud version | 7.0.1 |
 | Java version | 21 |
 | Build system | Maven 4.0.0 (multi-module) |
 | Key deps | Guava 33, Commons Math3, Apache Commons IO |
 
 ### Static-State Constraint
 
-CloudSim uses static global state: `CloudSim.init(numUsers, calendar, traceFlag)` reinitializes a shared event queue and entity registry. **Two simulations cannot run concurrently in the same JVM.**
+The simulation engine uses static global state: `OpenCloud.init(numUsers, calendar, traceFlag)` reinitializes a shared event queue and entity registry. **Two simulations cannot run concurrently in the same JVM.**
 
 **Resolution**: A `newSingleThreadExecutor` serializes all simulation `Callable`s. `POST /api/simulations` enqueues the job and immediately returns HTTP 202 with a job ID. The frontend polls `GET /api/simulations/{id}` until `status` is `COMPLETED` or `FAILED`. This is simpler and more debuggable than subprocess forking and avoids all process-management overhead.
 
-**Log capture**: CloudSim writes to `System.out` via its `Log` class. The runner redirects `System.out` to a `ByteArrayOutputStream` for the duration of the simulation, then restores it. Log output is capped at **5 MB per run**; if the captured bytes exceed 5 MB the stored string is truncated and `"\n[log truncated]"` is appended before saving to the DB and returning in the `logs` field of `SimulationResult`.
+**Log capture**: The simulation engine writes to `System.out` via its `Log` class. The runner redirects `System.out` to a `ByteArrayOutputStream` for the duration of the simulation, then restores it. Log output is capped at **5 MB per run**; if the captured bytes exceed 5 MB the stored string is truncated and `"\n[log truncated]"` is appended before saving to the DB and returning in the `logs` field of `SimulationResult`.
 
 ---
 
 ## 3. Full Simulation Parameter Set
 
-These are every knob the UI will expose, derived from reading all CloudSim core classes and Example 1–9.
+These are every knob the UI will expose, derived from reading all simulation core classes and Example 1–9.
 
 ### 3.1 Per Datacenter
 
@@ -92,8 +92,8 @@ Provisioners are always `RamProvisionerSimple`, `BwProvisionerSimple`, `PeProvis
 | Parameter | Type | Default | Notes |
 |---|---|---|---|
 | `numberOfUsers` | int | 1 | Broker count |
-| `simulationClock` | double | 11.0 | Passed to `CloudSim.init` |
-| `traceFlag` | boolean | false | Enable CloudSim event trace logging |
+| `simulationClock` | double | 11.0 | Passed to `OpenCloud.init` |
+| `traceFlag` | boolean | false | Enable simulation event trace logging |
 
 ### 3.6 Server-Side Input Caps
 
@@ -106,7 +106,7 @@ The following hard limits are enforced on `POST /api/simulations` (and `POST /ap
 | VMs per simulation | 100 | "Simulation may not exceed 100 VMs" |
 | Cloudlets per simulation | 1000 | "Simulation may not exceed 1,000 cloudlets" |
 
-Validation is performed in a dedicated `SimulationConfigValidator` component before any CloudSim objects are constructed, so the executor queue is never touched for invalid inputs.
+Validation is performed in a dedicated `SimulationConfigValidator` component before any simulation objects are constructed, so the executor queue is never touched for invalid inputs.
 
 ---
 
@@ -135,7 +135,7 @@ Validation is performed in a dedicated `SimulationConfigValidator` component bef
 │  Vite + TypeScript + Tailwind CSS │                                  │
 │  shadcn/ui + lucide-react icons   │                            ┌─────┴──────────────────────────────┐
 │  TanStack Query (server state)    │                            │  Spring Boot 3.x  (port 8080)      │
-│  React Router (navigation)        │                            │  modules/cloudsim-web/              │
+│  React Router (navigation)        │                            │  modules/opencloud-web/              │
 │  react-hook-form + zod (forms)    │                            │                                    │
 │  Recharts (charts)                │                            │  Spring Security — JWT httpOnly    │
 │  Zustand (client state)           │                            │  cookie auth                       │
@@ -145,14 +145,14 @@ Validation is performed in a dedicated `SimulationConfigValidator` component bef
                                                                  │  SimulationRunner                  │
                                                                  │  (SingleThreadExecutor)            │
                                                                  │     ↓                              │
-                                                                 │  CloudSim 7.0.1 (local dep)        │
+                                                                 │  OpenCloud 7.0.1 (local dep)        │
                                                                  └────────────────────────────────────┘
 ```
 
-### Package layout (`modules/cloudsim-web/src/main/java/org/cloudbus/cloudsim/web/`)
+### Package layout (`modules/opencloud-web/src/main/java/org/opencloud/web/`)
 
 ```
-CloudSimWebApplication.java
+OpenCloudWebApplication.java
 auth/
   AuthController.java
   AuthService.java
@@ -162,8 +162,8 @@ auth/
 simulation/
   SimulationController.java
   SimulationService.java
-  SimulationRunner.java        ← wraps CloudSim.init + startSimulation; captures + caps logs
-  SimulationMapper.java        ← SimulationConfigDto → CloudSim objects (TESTED)
+  SimulationRunner.java        ← wraps OpenCloud.init + startSimulation; captures + caps logs
+  SimulationMapper.java        ← SimulationConfigDto → simulation objects (TESTED)
   SimulationConfigValidator.java  ← enforces DC/host/VM/cloudlet caps, throws 400
   SimulationRun.java           (JPA entity)
   SimulationRunRepository.java
@@ -368,17 +368,17 @@ DELETE /api/configs/{id}
       "totalCost": 1200.0
     }
   ],
-  "logs": "Starting CloudSim version 7.0.1\n...",
+  "logs": "Starting OpenCloud version 7.0.1\n...",
   "logsTruncated": false
 }
 ```
 
 **Cost field notes** (important for `SimulationMapper`):
-- All cost fields are **derived by the CloudSim engine at runtime** — they are not constructor inputs on `Cloudlet`. The `Datacenter` stamps each submitted cloudlet via `cloudlet.setResourceParameter(datacenterId, costPerSecond, costPerBw)`, drawing rates from `DatacenterCharacteristics`.
+- All cost fields are **derived by the simulation engine at runtime** — they are not constructor inputs on `Cloudlet`. The `Datacenter` stamps each submitted cloudlet via `cloudlet.setResourceParameter(datacenterId, costPerSecond, costPerBw)`, drawing rates from `DatacenterCharacteristics`.
 - `cpuCostRate` ← `cloudlet.getCostPerSec()` (the $/sec rate stamped by the datacenter)
 - `actualCpuTime` ← `cloudlet.getActualCPUTime()` = `finishTime − startTime`
 - `cpuCost` = `cpuCostRate × actualCpuTime` (computed in mapper)
-- `bwCost` ← `cloudlet.getProcessingCost()` = `costPerBw × (fileSize + outputSize)` (BW transfer costs only; CPU not included — CloudSim's API)
+- `bwCost` ← `cloudlet.getProcessingCost()` = `costPerBw × (fileSize + outputSize)` (BW transfer costs only; CPU not included — OpenCloud's API)
 - `totalCost` = `cpuCost + bwCost` (computed in mapper)
 
 **`logs` field notes**:
@@ -454,7 +454,7 @@ CREATE TABLE saved_configs (
 `config_json` and `result_json` store the full DTO blobs. At simulation scale (at most hundreds of cloudlets per run) there is no query-performance reason to normalise further.
 
 **Seed data** (`data.sql`, runs on first startup):
-- Demo user: `demo@cloudsim.local` / `demo1234`
+- Demo user: `demo@opencloud.local` / `demo1234`
 - One saved config: Example 1 default parameters
 
 ---
@@ -496,11 +496,11 @@ All routes except `/login` and `/register` are wrapped in `<RequireAuth>`.
 ```
 <repo-root>/
   modules/
-    cloudsim/                 # UNCHANGED
-    cloudsim-examples/        # UNCHANGED
-    cloudsim-web/             # NEW — Spring Boot service
+    opencloud/                 # UNCHANGED
+    opencloud-examples/        # UNCHANGED
+    opencloud-web/             # NEW — Spring Boot service
       pom.xml
-      src/main/java/org/cloudbus/cloudsim/web/
+      src/main/java/org/opencloud/web/
       src/main/resources/application.properties
       src/main/resources/data.sql
       src/test/java/...
@@ -518,7 +518,7 @@ All routes except `/login` and `/register` are wrapped in `<RequireAuth>`.
     DESIGN.md                 # this file
   README-WEB.md
   docker-compose.yml
-  pom.xml                     # parent — add cloudsim-web to <modules>
+  pom.xml                     # parent — add opencloud-web to <modules>
 ```
 
 ---
@@ -527,8 +527,8 @@ All routes except `/login` and `/register` are wrapped in `<RequireAuth>`.
 
 ```bash
 # Backend
-mvn -pl modules/cloudsim-web -am package
-java -jar modules/cloudsim-web/target/cloudsim-web-*.jar
+mvn -pl modules/opencloud-web -am package
+java -jar modules/opencloud-web/target/opencloud-web-*.jar
 # → http://localhost:8080
 
 # Frontend
@@ -536,8 +536,8 @@ cd web && npm install && npm run dev
 # → http://localhost:5173  (proxies /api/* to :8080)
 
 # Original examples — still work unchanged
-mvn exec:java -pl modules/cloudsim-examples/ \
-  -Dexec.mainClass=org.cloudbus.cloudsim.examples.CloudSimExample1
+mvn exec:java -pl modules/opencloud-examples/ \
+  -Dexec.mainClass=org.opencloud.examples.OpenCloudExample1
 ```
 
 Full details including Docker Compose in `README-WEB.md`.
@@ -548,10 +548,10 @@ Full details including Docker Compose in `README-WEB.md`.
 
 | Layer | What is tested | Tool |
 |---|---|---|
-| `SimulationMapper` | JSON config → correct CloudSim object field values | JUnit 5 |
+| `SimulationMapper` | JSON config → correct OpenCloud object field values | JUnit 5 |
 | `TemplateService` | Each template returns a valid, parseable config | JUnit 5 |
 | `AuthService` | Register, login, duplicate-email error | JUnit 5 + H2 |
 | Frontend forms | Form validation, field defaults, template loading | Vitest + Testing Library |
 | E2E | Not in scope for initial build | — |
 
-The `SimulationMapper` unit tests are the highest-value tests: they catch mapping bugs (wrong field order in constructors, off-by-one PE counts, etc.) before any CloudSim execution is attempted.
+The `SimulationMapper` unit tests are the highest-value tests: they catch mapping bugs (wrong field order in constructors, off-by-one PE counts, etc.) before any OpenCloud execution is attempted.

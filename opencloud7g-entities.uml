@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.opencloud.container.core.Container</OriginalElement>
+  <nodes>
+    <node x="472.5" y="261.5">org.opencloud.Host</node>
+    <node x="-391.5" y="541.5">org.opencloud.power.PowerVm</node>
+    <node x="19.5" y="661.5">org.opencloud.EX.disk.HddVm</node>
+    <node x="431.5" y="401.5">org.opencloud.EX.disk.HddHost</node>
+    <node x="191.5" y="261.5">org.opencloud.core.PowerHostEntity</node>
+    <node x="-202.5" y="541.5">org.opencloud.network.datacenter.NetworkVm</node>
+    <node x="-19.5" y="401.5">org.opencloud.power.PowerHost</node>
+    <node x="-512.0" y="261.5">org.opencloud.container.core.Container</node>
+    <node x="189.5" y="401.5">org.opencloud.network.datacenter.NetworkHost</node>
+    <node x="27.0" y="541.5">org.opencloud.EX.vm.VmEX</node>
+    <node x="-159.5" y="401.5">org.opencloud.Vm</node>
+    <node x="-322.0" y="121.5">org.opencloud.core.GuestEntity</node>
+    <node x="263.5" y="121.5">org.opencloud.core.HostEntity</node>
+    <node x="-337.0" y="-18.5">org.opencloud.core.CoreAttributes</node>
+    <node x="-484.0" y="401.5">org.opencloud.container.core.PowerContainer</node>
+    <node x="-24.5" y="261.5">org.opencloud.core.VirtualEntity</node>
+    <node x="-314.0" y="261.5">org.opencloud.core.PowerGuestEntity</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.opencloud.power.PowerVm" target="org.opencloud.Vm" relationship="GENERALIZATION">
+      <point x="39.75" y="-18.5" />
+      <point x="-272.25" y="520.0" />
+      <point x="-112.0" y="520.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.power.PowerHost" target="org.opencloud.core.PowerHostEntity" relationship="REALIZATION">
+      <point x="-43.75" y="-18.5" />
+      <point x="24.25" y="360.0" />
+      <point x="308.0" y="360.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.container.core.PowerContainer" target="org.opencloud.container.core.Container" relationship="GENERALIZATION">
+      <point x="-56.0" y="-18.5" />
+      <point x="-428.0" y="380.0" />
+      <point x="-432.0" y="380.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.core.VirtualEntity" relationship="REALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="-112.0" y="320.0" />
+      <point x="68.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.HostEntity" target="org.opencloud.core.CoreAttributes" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="348.0" y="100.0" />
+      <point x="-232.0" y="100.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.core.HostEntity" relationship="REALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="528.0" y="240.0" />
+      <point x="390.25" y="240.0" />
+      <point x="42.25" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.EX.disk.HddHost" target="org.opencloud.Host" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="508.0" y="380.0" />
+      <point x="288.0" y="380.0" />
+      <point x="288.0" y="320.0" />
+      <point x="528.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.power.PowerHost" target="org.opencloud.Host" relationship="GENERALIZATION">
+      <point x="43.75" y="-18.5" />
+      <point x="111.75" y="380.0" />
+      <point x="288.0" y="380.0" />
+      <point x="288.0" y="320.0" />
+      <point x="528.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.container.core.PowerContainer" target="org.opencloud.core.PowerGuestEntity" relationship="REALIZATION">
+      <point x="56.0" y="-18.5" />
+      <point x="-316.0" y="380.0" />
+      <point x="-232.0" y="380.0" />
+      <point x="-232.0" y="320.0" />
+      <point x="-192.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.PowerHostEntity" target="org.opencloud.core.HostEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="308.0" y="180.0" />
+      <point x="305.75" y="180.0" />
+      <point x="-42.25" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.EX.disk.HddVm" target="org.opencloud.EX.vm.VmEX" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.VirtualEntity" target="org.opencloud.core.HostEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="68.0" y="220.0" />
+      <point x="308.0" y="220.0" />
+      <point x="308.0" y="180.0" />
+      <point x="305.75" y="180.0" />
+      <point x="-42.25" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.network.datacenter.NetworkVm" target="org.opencloud.Vm" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.container.core.Container" target="org.opencloud.core.GuestEntity" relationship="REALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="-432.0" y="240.0" />
+      <point x="-277.0" y="240.0" />
+      <point x="-45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.VirtualEntity" target="org.opencloud.core.GuestEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="68.0" y="240.0" />
+      <point x="-192.0" y="240.0" />
+      <point x="-192.0" y="180.0" />
+      <point x="-187.0" y="180.0" />
+      <point x="45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.EX.vm.VmEX" target="org.opencloud.Vm" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="88.0" y="520.0" />
+      <point x="-112.0" y="520.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.network.datacenter.NetworkHost" target="org.opencloud.Host" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="288.0" y="320.0" />
+      <point x="528.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.PowerGuestEntity" target="org.opencloud.core.GuestEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="-192.0" y="180.0" />
+      <point x="-187.0" y="180.0" />
+      <point x="45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.power.PowerVm" target="org.opencloud.core.PowerGuestEntity" relationship="REALIZATION">
+      <point x="-39.75" y="-18.5" />
+      <point x="-351.75" y="500.0" />
+      <point x="-232.0" y="500.0" />
+      <point x="-232.0" y="320.0" />
+      <point x="-192.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.GuestEntity" target="org.opencloud.core.CoreAttributes" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.9186991869918699" showDependencies="false" x="46.5" y="350.0" />
+  <SelectedNodes>
+    <node>org.opencloud.network.datacenter.NetworkVm</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,6 +1,6 @@
-# CloudSim Web UI
+# OpenCloud Web UI
 
-A browser-based interface for [CloudSim 7.0.1](https://github.com/Cloudslab/cloudsim) that lets you configure and run cloud computing simulations without editing Java source files.
+A browser-based interface for OpenCloud 7.0.1 that lets you configure and run cloud computing simulations without editing Java source files.
 
 ---
 
@@ -9,11 +9,11 @@ A browser-based interface for [CloudSim 7.0.1](https://github.com/Cloudslab/clou
 ```
 web/              React + TypeScript frontend  (Vite, Tailwind, shadcn/ui, TanStack Query)
 modules/
-  cloudsim/       CloudSim core — read-only, never modified
-  cloudsim-web/   Spring Boot 3.x REST API wrapping CloudSim
+  opencloud/       OpenCloud core — read-only, never modified
+  opencloud-web/   Spring Boot 3.x REST API wrapping the simulation engine
 ```
 
-The backend serializes simulation runs via a single-threaded executor (CloudSim uses static global state and cannot run concurrently). `POST /api/simulations` returns HTTP 202 immediately; the frontend polls until `COMPLETED` or `FAILED`.
+The backend serializes simulation runs via a single-threaded executor (The simulation engine uses static global state and cannot run concurrently). `POST /api/simulations` returns HTTP 202 immediately; the frontend polls until `COMPLETED` or `FAILED`.
 
 ---
 
@@ -31,14 +31,14 @@ The backend serializes simulation runs via a single-threaded executor (CloudSim 
 
 ```bash
 # From repo root
-mvn -pl modules/cloudsim-web -am package -DskipTests
-java -jar modules/cloudsim-web/target/cloudsim-web-*.jar
+mvn -pl modules/opencloud-web -am package -DskipTests
+java -jar modules/opencloud-web/target/opencloud-web-*.jar
 ```
 
-The API starts on **http://localhost:8080**. A SQLite database file `cloudsim.db` is created in the working directory on first run.
+The API starts on **http://localhost:8080**. A SQLite database file `opencloud.db` is created in the working directory on first run.
 
 A demo user is seeded automatically:
-- **Email**: `demo@cloudsim.local`
+- **Email**: `demo@opencloud.local`
 - **Password**: `demo1234`
 
 ### 2 — Run the frontend
@@ -65,17 +65,17 @@ docker compose up --build
 
 The API is available at **http://localhost:8080**. Then run the frontend as above (or serve the built assets).
 
-To build the frontend for production and have it served by the Spring Boot app, copy the `web/dist/` output into `modules/cloudsim-web/src/main/resources/static/` before packaging.
+To build the frontend for production and have it served by the Spring Boot app, copy the `web/dist/` output into `modules/opencloud-web/src/main/resources/static/` before packaging.
 
 ---
 
-## Running the original CloudSim examples
+## Running the original OpenCloud examples
 
-The `cloudsim/` module is untouched. All 9 original examples still run:
+The `opencloud/` module is untouched. All 9 original examples still run:
 
 ```bash
-mvn exec:java -pl modules/cloudsim-examples \
-  -Dexec.mainClass=org.cloudbus.cloudsim.examples.CloudSimExample1
+mvn exec:java -pl modules/opencloud-examples \
+  -Dexec.mainClass=org.opencloud.examples.OpenCloudExample1
 ```
 
 ---
@@ -84,7 +84,7 @@ mvn exec:java -pl modules/cloudsim-examples \
 
 ```bash
 # Backend (Spring Boot + auth + mapper tests)
-mvn -pl modules/cloudsim-web test
+mvn -pl modules/opencloud-web test
 
 # Frontend type check
 cd web && npx tsc --noEmit

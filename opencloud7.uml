@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.opencloud.Storage</OriginalElement>
+  <nodes>
+    <node x="856.0" y="441.5">org.opencloud.provisioners.RamProvisioner</node>
+    <node x="1170.5" y="441.5">org.opencloud.core.CloudInformationService</node>
+    <node x="161.0" y="121.5">org.opencloud.core.CoreAttributes</node>
+    <node x="1825.5" y="441.5">org.opencloud.DatacenterBroker</node>
+    <node x="1071.5" y="881.5">org.opencloud.provisioners.PeProvisionerSimple</node>
+    <node x="1516.0" y="441.5">org.opencloud.core.OpenCloudShutdown</node>
+    <node x="2000.5" y="881.5">org.opencloud.VmSchedulerTimeSharedOverSubscription</node>
+    <node x="-208.5" y="881.5">org.opencloud.CloudletSchedulerDynamicWorkload</node>
+    <node x="1105.0" y="741.5">org.opencloud.provisioners.PeProvisioner</node>
+    <node x="2308.0" y="441.5">org.opencloud.VmScheduler</node>
+    <node x="245.0" y="441.5">org.opencloud.VmAllocationPolicySimple</node>
+    <node x="1278.5" y="261.5">org.opencloud.VmAllocationPolicy</node>
+    <node x="-178.0" y="741.5">org.opencloud.CloudletSchedulerTimeShared</node>
+    <node x="789.0" y="741.5">org.opencloud.provisioners.BwProvisionerSimple</node>
+    <node x="176.0" y="261.5">org.opencloud.core.GuestEntity</node>
+    <node x="235.0" y="741.5">org.opencloud.CloudletSchedulerSpaceShared</node>
+    <node x="-264.5" y="441.5">org.opencloud.core.VmAbstract</node>
+    <node x="2187.5" y="741.5">org.opencloud.VmSchedulerTimeShared</node>
+    <node x="602.5" y="441.5">org.opencloud.provisioners.BwProvisioner</node>
+    <node x="1579.5" y="881.5">org.opencloud.HostDynamicWorkload</node>
+    <node x="1670.5" y="741.5">org.opencloud.Host</node>
+    <node x="1567.0" y="261.5">org.opencloud.core.SimEntity</node>
+    <node x="401.5" y="261.5">org.opencloud.core.HostEntity</node>
+    <node x="658.5" y="741.5">org.opencloud.Vm</node>
+    <node x="-37.5" y="441.5">org.opencloud.CloudletScheduler</node>
+    <node x="893.0" y="881.5">org.opencloud.Cloudlet</node>
+    <node x="2023.0" y="261.5">org.opencloud.DatacenterCharacteristics</node>
+    <node x="2099.0" y="441.5">org.opencloud.Datacenter</node>
+    <node x="1820.5" y="741.5">org.opencloud.VmSchedulerSpaceShared</node>
+    <node x="1342.5" y="741.5">org.opencloud.provisioners.RamProvisionerSimple</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.opencloud.provisioners.PeProvisionerSimple" target="org.opencloud.provisioners.PeProvisioner" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.provisioners.BwProvisioner" relationship="TO_ONE">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="620.0" />
+      <point x="766.0" y="620.0" />
+      <point x="766.0" y="500.0" />
+      <point x="757.75" y="500.0" />
+      <point x="51.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.DatacenterBroker" target="org.opencloud.core.SimEntity" relationship="GENERALIZATION">
+      <point x="-60.25" y="-18.5" />
+      <point x="1885.75" y="420.0" />
+      <point x="1646.0" y="420.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.provisioners.RamProvisioner" relationship="TO_ONE">
+      <point x="-27.75" y="-18.5" />
+      <point x="1698.25" y="720.0" />
+      <point x="1666.0" y="720.0" />
+      <point x="1666.0" y="580.0" />
+      <point x="906.0" y="580.0" />
+      <point x="906.0" y="500.0" />
+      <point x="911.0" y="500.0" />
+      <point x="-55.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.CloudInformationService" target="org.opencloud.core.SimEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="1326.0" y="420.0" />
+      <point x="1646.0" y="420.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.OpenCloudShutdown" target="org.opencloud.core.SimEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.provisioners.BwProvisionerSimple" target="org.opencloud.provisioners.BwProvisioner" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="926.0" y="680.0" />
+      <point x="654.25" y="680.0" />
+      <point x="-51.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.VmSchedulerTimeShared" target="org.opencloud.VmScheduler" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="2346.0" y="520.0" />
+      <point x="2455.0" y="520.0" />
+      <point x="49.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.VmAllocationPolicySimple" target="org.opencloud.core.HostEntity" relationship="TO_MANY">
+      <point x="80.5" y="-18.5" />
+      <point x="486.5" y="420.0" />
+      <point x="486.0" y="420.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.VmAbstract" target="org.opencloud.core.HostEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="-174.0" y="420.0" />
+      <point x="226.0" y="420.0" />
+      <point x="226.0" y="340.0" />
+      <point x="429.66666666666663" y="340.0" />
+      <point x="-56.33333333333333" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.VmAbstract" target="org.opencloud.core.GuestEntity" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="-174.0" y="420.0" />
+      <point x="226.0" y="420.0" />
+      <point x="226.0" y="340.0" />
+      <point x="221.0" y="340.0" />
+      <point x="-45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.VmSchedulerTimeSharedOverSubscription" target="org.opencloud.VmSchedulerTimeShared" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="2246.0" y="860.0" />
+      <point x="2346.0" y="860.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.VmScheduler" relationship="TO_ONE">
+      <point x="-27.75" y="-18.5" />
+      <point x="1698.25" y="720.0" />
+      <point x="1666.0" y="720.0" />
+      <point x="1666.0" y="560.0" />
+      <point x="1626.0" y="560.0" />
+      <point x="1626.0" y="500.0" />
+      <point x="2357.0" y="500.0" />
+      <point x="-49.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.provisioners.BwProvisioner" relationship="TO_ONE">
+      <point x="-27.75" y="-18.5" />
+      <point x="1698.25" y="720.0" />
+      <point x="1666.0" y="720.0" />
+      <point x="1666.0" y="600.0" />
+      <point x="766.0" y="600.0" />
+      <point x="766.0" y="500.0" />
+      <point x="757.75" y="500.0" />
+      <point x="51.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.VmScheduler" relationship="TO_ONE">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="700.0" />
+      <point x="1626.0" y="700.0" />
+      <point x="1626.0" y="500.0" />
+      <point x="2357.0" y="500.0" />
+      <point x="-49.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.CloudletSchedulerDynamicWorkload" target="org.opencloud.CloudletSchedulerTimeShared" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.Datacenter" relationship="TO_ONE">
+      <point x="-27.75" y="-18.5" />
+      <point x="1698.25" y="720.0" />
+      <point x="1666.0" y="720.0" />
+      <point x="1666.0" y="520.0" />
+      <point x="2186.0" y="520.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.core.GuestEntity" relationship="TO_MANY">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="520.0" />
+      <point x="826.0" y="520.0" />
+      <point x="826.0" y="420.0" />
+      <point x="1106.0" y="420.0" />
+      <point x="1106.0" y="320.0" />
+      <point x="311.0" y="320.0" />
+      <point x="45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.HostDynamicWorkload" target="org.opencloud.Host" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.CloudletScheduler" relationship="TO_ONE">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="520.0" />
+      <point x="147.75" y="520.0" />
+      <point x="61.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.HostEntity" target="org.opencloud.core.CoreAttributes" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="486.0" y="240.0" />
+      <point x="266.0" y="240.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.CloudletSchedulerSpaceShared" target="org.opencloud.CloudletScheduler" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="426.0" y="720.0" />
+      <point x="26.0" y="720.0" />
+      <point x="26.0" y="500.0" />
+      <point x="24.25" y="500.0" />
+      <point x="-61.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.core.GuestEntity" relationship="TO_MANY">
+      <point x="-27.75" y="-18.5" />
+      <point x="1698.25" y="720.0" />
+      <point x="1666.0" y="720.0" />
+      <point x="1666.0" y="520.0" />
+      <point x="1106.0" y="520.0" />
+      <point x="1106.0" y="320.0" />
+      <point x="311.0" y="320.0" />
+      <point x="45.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.provisioners.RamProvisioner" relationship="TO_ONE">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="660.0" />
+      <point x="906.0" y="660.0" />
+      <point x="906.0" y="500.0" />
+      <point x="911.0" y="500.0" />
+      <point x="-55.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.provisioners.RamProvisionerSimple" target="org.opencloud.provisioners.RamProvisioner" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="1486.0" y="720.0" />
+      <point x="1021.0" y="720.0" />
+      <point x="55.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Host" target="org.opencloud.core.HostEntity" relationship="REALIZATION">
+      <point x="27.75" y="-18.5" />
+      <point x="1753.75" y="540.0" />
+      <point x="1146.0" y="540.0" />
+      <point x="1146.0" y="400.0" />
+      <point x="542.3333333333333" y="400.0" />
+      <point x="56.333333333333314" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.core.VmAbstract" relationship="REALIZATION">
+      <point x="-23.75" y="-18.5" />
+      <point x="682.25" y="700.0" />
+      <point x="-174.0" y="700.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.VmSchedulerSpaceShared" target="org.opencloud.VmScheduler" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="1986.0" y="720.0" />
+      <point x="2346.0" y="720.0" />
+      <point x="2346.0" y="520.0" />
+      <point x="2455.0" y="520.0" />
+      <point x="49.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.CloudletSchedulerTimeShared" target="org.opencloud.CloudletScheduler" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="6.0" y="720.0" />
+      <point x="26.0" y="720.0" />
+      <point x="26.0" y="500.0" />
+      <point x="24.25" y="500.0" />
+      <point x="-61.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Datacenter" target="org.opencloud.DatacenterCharacteristics" relationship="TO_ONE">
+      <point x="43.5" y="-18.5" />
+      <point x="2229.5" y="420.0" />
+      <point x="2226.0" y="420.0" />
+      <point x="2226.0" y="320.0" />
+      <point x="2186.0" y="320.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Vm" target="org.opencloud.core.HostEntity" relationship="TO_ONE">
+      <point x="23.75" y="-18.5" />
+      <point x="729.75" y="720.0" />
+      <point x="726.0" y="720.0" />
+      <point x="726.0" y="520.0" />
+      <point x="586.0" y="520.0" />
+      <point x="586.0" y="420.0" />
+      <point x="486.0" y="420.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Datacenter" target="org.opencloud.core.SimEntity" relationship="GENERALIZATION">
+      <point x="-43.5" y="-18.5" />
+      <point x="2142.5" y="420.0" />
+      <point x="1646.0" y="420.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.Datacenter" target="org.opencloud.VmAllocationPolicy" relationship="TO_ONE">
+      <point x="43.5" y="-18.5" />
+      <point x="2229.5" y="420.0" />
+      <point x="2226.0" y="420.0" />
+      <point x="2226.0" y="340.0" />
+      <point x="1469.75" y="340.0" />
+      <point x="63.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.core.GuestEntity" target="org.opencloud.core.CoreAttributes" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-18.5" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.VmAllocationPolicySimple" target="org.opencloud.VmAllocationPolicy" relationship="GENERALIZATION">
+      <point x="-80.5" y="-18.5" />
+      <point x="325.5" y="360.0" />
+      <point x="1342.25" y="360.0" />
+      <point x="-63.75" y="18.5" />
+    </edge>
+    <edge source="org.opencloud.DatacenterBroker" target="org.opencloud.DatacenterCharacteristics" relationship="TO_MANY">
+      <point x="60.25" y="-18.5" />
+      <point x="2006.25" y="400.0" />
+      <point x="2186.0" y="400.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.4917562724014337" showDependencies="true" x="1130.0" y="530.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

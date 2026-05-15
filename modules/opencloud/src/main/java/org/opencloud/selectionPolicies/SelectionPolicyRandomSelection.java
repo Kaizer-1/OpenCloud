@@ -1,0 +1,53 @@
+/*
+ * Title: OpenCloud Toolkit Description: OpenCloud (Cloud Simulation) Toolkit for Modeling and
+ * Simulation of Clouds Licence: GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2009-2024, The University of Melbourne, Australia
+ */
+
+package org.opencloud.selectionPolicies;
+
+import org.opencloud.container.utils.RandomGen;
+import org.opencloud.Log;
+
+import java.util.List;
+import java.util.Set;
+
+/**
+ * Created by Remo Andreoli (June 2024).
+ * For Random policy.
+ *
+ * @since OpenCloud toolkit 7.0
+ */
+public class SelectionPolicyRandomSelection<CandidateEntity> implements SelectionPolicy<CandidateEntity> {
+    @Override
+    public CandidateEntity select(List<CandidateEntity> candidates, Object obj, Set<CandidateEntity> excludedCandidates) {
+        CandidateEntity selectedHost = null;
+        while (true) {
+            if (!candidates.isEmpty()) {
+                int randomNum = new RandomGen().getNum(candidates.size());
+                selectedHost = candidates.get(randomNum);
+                if (excludedCandidates.contains(selectedHost)) {
+                    continue;
+                }
+            } else {
+                Log.println("Error: The host entity list is empty");
+            }
+
+            return selectedHost;
+        }
+    }
+
+    /* Alternative without our RandomGen wrapper
+
+    @Override
+	public GuestEntity select(List<GuestEntity> candidates, Object obj, Set<GuestEntity> excludedCandidates) {
+		if (candidates.isEmpty()) {
+			return null;
+		}
+
+		int index = rand.nextInt(candidates.size());
+		return candidates.get(index);
+	}
+     */
+}

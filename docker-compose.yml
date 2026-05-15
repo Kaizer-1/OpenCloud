@@ -6,10 +6,10 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - cloudsim-data:/data
+      - opencloud-data:/data
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/cloudsim.db
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/opencloud.db
     restart: unless-stopped
 
 volumes:
-  cloudsim-data:
+  opencloud-data:

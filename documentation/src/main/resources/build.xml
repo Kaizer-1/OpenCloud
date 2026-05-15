@@ -4,7 +4,7 @@
 
 July 2010
 
-Build file or Makefile for CloudSim.
+Build file or Makefile for OpenCloud.
 
 Note:
 
@@ -14,11 +14,11 @@ Note:
 
 Usage:
 
-  * Type 'ant' to compile all cloudsim source files, put them into the
-    classes/ directory and to create a cloudsim-new.jar file in the jars/ directory
+  * Type 'ant' to compile all opencloud source files, put them into the
+    classes/ directory and to create a opencloud-new.jar file in the jars/ directory
 
   * Type 'ant clean' to delete all the compiled classes and the classes/
-    directory itself. The generated cloudsim-new.jar is not deleted.
+    directory itself. The generated opencloud-new.jar is not deleted.
 
 Note:
 
@@ -31,15 +31,15 @@ Acknowledgement:
 -->
 
 
-<project name="CloudSim" basedir="." default="makejar">
+<project name="OpenCloud" basedir="." default="makejar">
     <description>
-            This is the build file for CloudSim
+            This is the build file for OpenCloud
     </description>
 
     <!-- location to store Java classes -->
     <property name="class.dir" location="./classes" />
 
-    <!-- location to store CloudSim source files -->
+    <!-- location to store OpenCloud source files -->
     <property name="src.dir" location="./sources" />
 
     <!-- location to store jar files -->
@@ -56,7 +56,7 @@ Acknowledgement:
         <mkdir dir="${class.dir}" />
     </target>
 
-    <!-- rule to compile CloudSim source files -->
+    <!-- rule to compile OpenCloud source files -->
     <target name="build" depends="prepare">
         <javac srcdir="${src.dir}" destdir="${class.dir}" includeantruntime="false">
  		<classpath refid="classpath"/>
@@ -67,16 +67,16 @@ Acknowledgement:
 
          Note:
 
-           * The new jar file is named as "cloudsim-new.jar" to avoid overriding
+           * The new jar file is named as "opencloud-new.jar" to avoid overriding
              the existing jar file.
 
-           * The new jar file only contains cloudsim classes only.
+           * The new jar file only contains opencloud classes only.
     -->
 
     <target name="makejar" depends="build">
-        <echo>Compiling a new jar file, named: "cloudsim-new.jar".</echo>
-        <echo>This jar file contains CloudSim classes only.</echo>
-        <jar destfile="${jar.dir}/cloudsim-new.jar" basedir="${class.dir}" />
+        <echo>Compiling a new jar file, named: "opencloud-new.jar".</echo>
+        <echo>This jar file contains OpenCloud classes only.</echo>
+        <jar destfile="${jar.dir}/opencloud-new.jar" basedir="${class.dir}" />
     </target>
 
     <target name="clean" description="clean up" >
